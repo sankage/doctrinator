@@ -51,3 +51,7 @@ gem 'composite_primary_keys', github: 'composite-primary-keys/composite_primary_
 gem 'eaal', '~> 0.1.12'
 
 gem 'activerecord-import', '~> 0.7.0'
+
+
+gem 'bourbon', '~> 4.0.2'
+gem 'neat', '~> 1.7.0'

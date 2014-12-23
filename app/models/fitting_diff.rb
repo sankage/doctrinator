@@ -2,7 +2,7 @@ class FittingDiff
   attr_reader :fitting, :pilots
   def initialize(fitting)
     @fitting = fitting
-    @pilots = Pilot.includes(pilot_skills: :skill)
+    @pilots = Pilot.includes(pilot_skills: :skill).order(:name)
   end
 
   def requirements
@@ -17,11 +17,19 @@ class FittingDiff
     fitting.dna
   end
 
+  def ship_name
+    fitting.ship_name
+  end
+
+  def fitting_name
+    "#{fitting.ship_name}—#{fitting.name}"
+  end
+
   def diffs
     pilots.map do |pilot|
       {
         pilot: pilot,
-        fitting: requirements.map { |req| check_requirement(req, pilot) }
+        fitting: requirements.map { |req| [req.skill_name, check_requirement(req, pilot)] }.to_h
       }
     end
   end

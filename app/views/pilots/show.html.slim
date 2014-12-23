@@ -1,5 +1,6 @@
 h1 Pilot—#{@pilot.name}
 
+p Skills last imported #{time_ago_in_words(@pilot.updated_at)} ago
 = link_to "Import player skills", import_skills_player_pilot_path(@pilot.player, @pilot)
 
 h2 Skills

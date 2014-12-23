@@ -1,17 +1,16 @@
-h1 Fitting
+h1 Fittings
+h2 Fitting Name: #{@fitting.fitting_name}
 
-h2 EFT
+section
+  div.half
+    h2 EFT
+    == @fitting.eft.gsub("\n", "<br>")
 
-== @fitting.eft.gsub("\n", "<br>")
-
-
-h2 DNA
-
-= @fitting.dna
-
+  div.half
+    h2 DNA
+    = @fitting.dna
 
 h2 Requirements
-
 table
   thead
     tr
@@ -23,9 +22,7 @@ table
         td = req.skill_name
         td = req.level
 
-
 h2 Pilots
-
 table
   thead
     tr
@@ -35,4 +32,4 @@ table
     - @fitting.diffs.each do |diff|
       tr
         td = diff[:pilot].name
-        td = diff[:fitting].all? ? "Yes" : "No"
+        td = diff[:fitting].all? { |k,v| v } ? "Yes" : "No"
