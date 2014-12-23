@@ -7,7 +7,7 @@ class PilotsController < ApplicationController
 
   def import_skills
     pilot = Pilot.find(params[:id])
-    PilotSkill.import_for_pilot(pilot)
+    SkillImportJob.perform_later(pilot)
     redirect_to player_pilot_path(pilot.player, pilot)
   end
 end
