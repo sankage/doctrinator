@@ -45,3 +45,5 @@ end
 
 gem 'slim', '~> 3.0.1'
 gem 'simple_form', '~> 3.1.0'
+
+gem 'composite_primary_keys', github: 'composite-primary-keys/composite_primary_keys', branch: 'ar_4.2.x'

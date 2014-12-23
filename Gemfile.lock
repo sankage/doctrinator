@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/composite-primary-keys/composite_primary_keys.git
+  revision: 1aa1a4d50759c5a2b5f28cc0b6b1f86ac9e2269d
+  branch: ar_4.2.x
+  specs:
+    composite_primary_keys (7.0.11)
+      activerecord (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +167,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  composite_primary_keys!
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.0)
