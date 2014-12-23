@@ -1,0 +1,7 @@
+h1 Fittings
+
+= link_to "Add a Fitting", new_fitting_path
+
+ul
+  - @fittings.each do |fitting|
+    li = link_to fitting.name, fitting

@@ -1,0 +1,38 @@
+h1 Fitting
+
+h2 EFT
+
+== @fitting.eft.gsub("\n", "<br>")
+
+
+h2 DNA
+
+= @fitting.dna
+
+
+h2 Requirements
+
+table
+  thead
+    tr
+      th Skill Name
+      th Skill Level
+  tbody
+    - @fitting.requirements.each do |req|
+      tr
+        td = req.skill_name
+        td = req.level
+
+
+h2 Pilots
+
+table
+  thead
+    tr
+      th Pilot
+      th Can Fly?
+  tbody
+    - @fitting.diffs.each do |diff|
+      tr
+        td = diff[:pilot].name
+        td = diff[:fitting].all? ? "Yes" : "No"
