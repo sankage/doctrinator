@@ -1,0 +1,13 @@
+div.modal
+  label for="modal-#{pilot.id}"
+    div class="btn js-btn" = label
+  input.modal-state id="modal-#{pilot.id}" type="checkbox"
+  div.modal-window
+    div.modal-inner
+      label.modal-close for="modal-#{pilot.id}"
+      h1 #{pilot.name}'s Missing Skills
+      p.intro
+      ul.default
+        - fitting.each do |skill, valid|
+          - unless valid
+            li = skill

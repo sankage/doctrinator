@@ -54,5 +54,6 @@ gem 'activerecord-import', '~> 0.7.0'
 
 gem 'bourbon', '~> 4.0.2'
 gem 'neat', '~> 1.7.0'
+gem 'refills', '~> 0.0.2'
 
 gem 'sucker_punch', '~> 1.3.1'

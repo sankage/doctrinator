@@ -15,7 +15,6 @@ class Fitting < ActiveRecord::Base
         skill_level.split(";").map(&:to_i)
       }
       requirements = Requirement.create_from_static_array(skills)
-      requirements.reject { |req| req.group == "Rigging" }
     end
   end
 end

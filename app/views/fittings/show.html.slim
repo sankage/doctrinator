@@ -11,6 +11,7 @@ section
     = @fitting.dna
 
 h2 Requirements
+p ignoring rigs
 table
   thead
     tr
@@ -32,4 +33,10 @@ table
     - @fitting.diffs.each do |diff|
       tr
         td = diff[:pilot].name
-        td = diff[:fitting].all? { |k,v| v } ? "Yes" : "No"
+        td
+          - if diff[:fitting].all? { |k,v| v }
+            | Yes
+          - else
+            = render "refills/modal", label: "No",
+                                    fitting: diff[:fitting],
+                                      pilot: diff[:pilot]

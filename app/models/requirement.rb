@@ -1,12 +1,13 @@
 class Requirement
   def self.create_from_static_array(static_array)
     skill_ids = static_array.map(&:first)
-    skills = Static::Skill.where(typeID: skill_ids)
+    skills = Static::Skill.includes(:group).where(typeID: skill_ids)
     static_array.map { |skill_id, level|
       skill = skills.detect { |s| s.typeID == skill_id }
       next if skill.nil?
+      next if skill.group_name == "Rigging"
       new(skill, level)
-    }.uniq
+    }.compact.uniq
   end
 
   def self.create_from_skill_id(id, level)
@@ -45,10 +46,6 @@ class Requirement
     @skill_name = skill.typeName
     @level = level
     freeze
-  end
-
-  def group
-    @skill.group_name
   end
 
   def <=>(other)
