@@ -27,17 +27,22 @@ class FittingDiff
 
   def diffs
     pilots.map do |pilot|
+      if pilot.updated_at < 12.hours.ago || pilot.pilot_skills.size == 0
+        SkillImportJob.perform_later(pilot)
+      end
       {
         pilot: pilot,
-        fitting: requirements.map { |req| [req.skill_name, check_requirement(req, pilot)] }.to_h
+        fitting: requirements.map { |req|
+          [req.skill_name, check_requirement(req, pilot.pilot_skills)]
+        }.to_h
       }
     end
   end
 
   private
 
-  def check_requirement(req, pilot)
-    pilot_skill = pilot.pilot_skills.detect { |ps| ps.skill_id == req.skill_id }
+  def check_requirement(req, pilot_skills)
+    pilot_skill = pilot_skills.detect { |ps| ps.skill_id == req.skill_id }
     return false unless pilot_skill
     return false if pilot_skill.level < req.level
     return true if pilot_skill.level >= req.level

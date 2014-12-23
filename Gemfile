@@ -52,6 +52,7 @@ gem 'eaal', '~> 0.1.12'
 
 gem 'activerecord-import', '~> 0.7.0'
 
-
 gem 'bourbon', '~> 4.0.2'
 gem 'neat', '~> 1.7.0'
+
+gem 'sucker_punch', '~> 1.3.1'
