@@ -4,7 +4,8 @@ class Requirement
     skills = Static::Skill.where(typeID: skill_ids)
     static_array.map { |skill_id, level|
       skill = skills.detect { |s| s.typeID == skill_id }
-      new(skill, level) unless skill.nil?
+      next if skill.nil?
+      new(skill, level)
     }.uniq
   end
 
@@ -39,10 +40,15 @@ class Requirement
 
   attr_reader :skill_id, :skill_name, :level
   def initialize(skill, level)
+    @skill = skill
     @skill_id = skill.typeID
     @skill_name = skill.typeName
     @level = level
     freeze
+  end
+
+  def group
+    @skill.group_name
   end
 
   def <=>(other)
