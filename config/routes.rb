@@ -53,4 +53,16 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :players, only: [:index, :show, :new, :create] do
+    resources :api_keys, only: [:new, :create, :show] do
+      member do
+        post "import"
+      end
+    end
+    resources :pilots, only: [:show] do
+      member do
+        get "import_skills"
+      end
+    end
+  end
 end

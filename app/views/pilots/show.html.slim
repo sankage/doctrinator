@@ -1,0 +1,17 @@
+h1 Pilot—#{@pilot.name}
+
+= link_to "Import player skills", import_skills_player_pilot_path(@pilot.player, @pilot)
+
+h2 Skills
+table
+  thead
+    tr
+      th Group
+      th Skill
+      th Level
+  tbody
+    - @skills.each do |skill|
+      tr
+        td = skill.skill.group.name
+        td = skill.skill.name
+        td = skill.level

@@ -1,0 +1,11 @@
+h1 API Key—#{@player.name}
+
+= form_tag(import_player_api_key_path(@player, @api_key), method: :post)
+  ul
+    - @characters.each do |character|
+      li
+        label
+          = check_box_tag "character[id_name][]", "#{character.characterID}|#{character.name}"
+          = character.name
+
+  = submit_tag "Import Characters"
