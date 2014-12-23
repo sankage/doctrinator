@@ -5,6 +5,7 @@ class PilotSkill < ActiveRecord::Base
     skills = parse_skills(skills: result.skills, pilot: pilot)
 
     PilotSkill.import(skills)
+    pilot.touch
   end
 
   def self.parse_skills(skills: , pilot:)
