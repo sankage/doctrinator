@@ -6,8 +6,7 @@ ul.default
     li = link_to pilot.name, player_pilot_path(@player, pilot)
 
 h2 API Keys
+= link_to "Add API key", new_player_api_key_path(@player), class: "button"
 ul.default
   - @player.api_keys.each do |api_key|
     li = link_to api_key.key_id, [@player, api_key]
-
-= link_to "Add API key", new_player_api_key_path(@player)

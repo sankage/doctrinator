@@ -1,8 +1,8 @@
 h1 API keys
 
+= link_to "Get key from EVE", "https://support.eveonline.com/api/Key/CreatePredefined/8"
+
 = simple_form_for [@player, @api_key] do |f|
   = f.input :key_id
   = f.input :v_code
   = f.button :submit
-
-= link_to "Create key", "https://support.eveonline.com/api/Key/CreatePredefined/8"

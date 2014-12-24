@@ -1,8 +1,6 @@
 header
-  ul
+  ul.horizontal
     - if logged_in?
       li = link_to "Players", players_path
       li = link_to "Fittings", fittings_path
       li = link_to "Log out", logout_path, method: :delete
-    - else
-      li = link_to "Log in", login_path

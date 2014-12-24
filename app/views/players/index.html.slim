@@ -1,6 +1,6 @@
 h1 Players
 
-= link_to "Add new player", new_player_path
+= link_to "Add new player", new_player_path, class: "button"
 ul.default
   - @players.each do |player|
     li = link_to player.name, player

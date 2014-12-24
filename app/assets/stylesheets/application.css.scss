@@ -14,6 +14,12 @@ section {
 ul.default {
   @extend %default-ul;
 }
+ul.horizontal {
+  li {
+    display: inline-block;
+    margin-right: 2em;
+  }
+}
 
 div.half {
   @include span-columns(6);
@@ -56,4 +62,8 @@ div.half {
 
 .flash-success {
   @include flash($success-color);
+}
+
+.button {
+  @extend %button;
 }
