@@ -1,6 +1,6 @@
 class PilotSkill < ActiveRecord::Base
   def self.import_for_pilot(pilot)
-    skills = EveAPI.new(@api_key).skills(pilot.character_id)
+    skills = EveAPI.new(pilot.api_key).skills(pilot.character_id)
 
     PilotSkill.import(parse_skills(skills: skills, pilot: pilot))
     pilot.touch
