@@ -54,7 +54,7 @@ gem 'simple_form', '~> 3.1.0'
 
 gem 'composite_primary_keys', github: 'composite-primary-keys/composite_primary_keys', branch: 'ar_4.2.x'
 
-gem 'eaal', '~> 0.1.12'
+gem 'eaal', github: '3rdpartyeve/eaal'
 
 gem 'activerecord-import', '~> 0.7.0'
 

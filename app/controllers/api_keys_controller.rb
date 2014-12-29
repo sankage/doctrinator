@@ -7,10 +7,9 @@ class ApiKeysController < ApplicationController
     @player = Player.find(params[:player_id])
     @api_key = ApiKey.find(params[:id])
 
-    api = EAAL::API.new(@api_key.key_id, @api_key.v_code)
-    result = api.Characters
+    characters = EveAPI.new(@api_key.key_id, @api_key.v_code).characters
     character_ids = @player.pilots.pluck(:character_id)
-    @characters = result.characters.delete_if { |char|
+    @characters = characters.delete_if { |char|
       character_ids.include?(char.characterID)
     }
   end

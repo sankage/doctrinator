@@ -1,10 +1,8 @@
 class PilotSkill < ActiveRecord::Base
   def self.import_for_pilot(pilot)
-    api = EAAL::API.new(pilot.api_key.key_id, pilot.api_key.v_code, "char")
-    result = api.CharacterSheet(characterID: pilot.character_id)
-    skills = parse_skills(skills: result.skills, pilot: pilot)
+    skills = EveAPI.new(@api_key.key_id, @api_key.v_code).skills(pilot.character_id)
 
-    PilotSkill.import(skills)
+    PilotSkill.import(parse_skills(skills: skills, pilot: pilot))
     pilot.touch
   end
 
