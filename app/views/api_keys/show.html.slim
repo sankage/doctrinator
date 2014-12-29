@@ -1,4 +1,11 @@
 h1 API Key—#{@player.name}
+
+- if @api_key.incorrect?
+  p.flash-error This API Key is invalid.
+
+- if @api_key.expired?
+  p.flash-error This API Key is expired.
+
 = form_tag(import_player_api_key_path(@player, @api_key), method: :post)
   ul
     - @characters.each do |character|

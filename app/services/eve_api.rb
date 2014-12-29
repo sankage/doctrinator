@@ -1,7 +1,8 @@
 class EveAPI
-  def initialize(key_id, v_code)
-    @key_id = key_id
-    @v_code = v_code
+  def initialize(api_key)
+    @api_key = api_key
+    @key_id = api_key.key_id
+    @v_code = api_key.v_code
     @apis = {}
   end
 
@@ -10,9 +11,11 @@ class EveAPI
     result.characters
   rescue EAAL::Exception.EveAPIException(106)
     # Must provide userID or keyID parameter for authentication.
+    @api_key.incorrect!
     []
   rescue EAAL::Exception.EveAPIException(222)
     # Key has expired. Contact key owner for access renewal.
+    @api_key.expired!
     []
   end
 
@@ -21,9 +24,11 @@ class EveAPI
     result.skills
   rescue EAAL::Exception.EveAPIException(106)
     # Must provide userID or keyID parameter for authentication.
+    @api_key.incorrect!
     []
   rescue EAAL::Exception.EveAPIException(222)
     # Key has expired. Contact key owner for access renewal.
+    @api_key.expired!
     []
   end
 

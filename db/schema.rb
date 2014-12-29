@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224040445) do
+ActiveRecord::Schema.define(version: 20141229182047) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "key_id"
     t.string   "v_code"
     t.integer  "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "status",     default: 0
   end
 
   add_index "api_keys", ["player_id"], name: "index_api_keys_on_player_id"

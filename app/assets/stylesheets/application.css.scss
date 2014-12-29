@@ -71,3 +71,7 @@ div.half {
 table.not-fixed {
   table-layout: auto;
 }
+
+.incorrect, .expired {
+  color: darken($error-color, 45);
+}

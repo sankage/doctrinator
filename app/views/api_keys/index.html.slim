@@ -9,18 +9,24 @@ table.not-fixed
       th Player
       th Key ID
       th VCode
+      th Status
       th Options
   tbody
     - @players.each do |player|
       - if player.api_keys.size > 0
-        tr rowspan=player.api_keys.size
-          td = link_to player.name, player
-          td = player.api_keys.first.key_id
-          td = player.api_keys.first.v_code
+        tr
+          td rowspan=player.api_keys.size = link_to player.name, player
+          td class=player.api_keys.first.status = player.api_keys.first.key_id
+          td class=player.api_keys.first.status = player.api_keys.first.v_code
+          td class=player.api_keys.first.status = player.api_keys.first.status_text.capitalize
           td = link_to "✖", player_api_key_path(player, player.api_keys.first), \
                             method: :delete, \
                             data: { confirm: "Are you sure you wish to delete this api key?" }
         - player.api_keys[1..-1].each do |api_key|
           tr
-            td = api_key.key_id
-            td = api_key.v_code
+            td class=api_key.status = api_key.key_id
+            td class=api_key.status = api_key.v_code
+            td class=api_key.status = api_key.status_text.capitalize
+            td = link_to "✖", player_api_key_path(player, api_key), \
+                              method: :delete, \
+                              data: { confirm: "Are you sure you wish to delete this api key?" }
