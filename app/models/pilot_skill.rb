@@ -26,9 +26,6 @@ class PilotSkill < ActiveRecord::Base
     end.compact
   end
 
-  # TODO: Upon request, if the pilot hasnt been modified in the last 12 hours,
-  # trigger a new import to happen in the background
-
   belongs_to :pilot
   belongs_to :skill, :class_name => "Static::Skill", foreign_key: :skill_id
 end
