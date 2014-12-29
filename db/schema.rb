@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229182047) do
+ActiveRecord::Schema.define(version: 20141229211912) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "key_id"
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 20141229182047) do
   end
 
   add_index "api_keys", ["player_id"], name: "index_api_keys_on_player_id"
+
+  create_table "doctrine_fits", force: :cascade do |t|
+    t.integer  "doctrine_id"
+    t.integer  "fitting_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "doctrine_fits", ["doctrine_id"], name: "index_doctrine_fits_on_doctrine_id"
+  add_index "doctrine_fits", ["fitting_id"], name: "index_doctrine_fits_on_fitting_id"
+
+  create_table "doctrines", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fittings", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,7 @@
+h1 Doctrines
+
+= link_to "Add a doctrine", new_doctrine_path, class: "button"
+
+ul.default
+  - @doctrines.each do |doctrine|
+    li = link_to doctrine.name, doctrine

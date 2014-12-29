@@ -1,0 +1,4 @@
+= simple_form_for @doctrine do |f|
+  = f.input :name
+  = f.association :fittings, as: :check_boxes
+  = f.button :submit

@@ -1,0 +1,29 @@
+h1 Doctrines—#{@doctrine.doctrine_name}
+
+= link_to "Edit doctrine", edit_doctrine_path(@doctrine.doctrine), class: "button"
+
+h2 Fittings
+ul.default
+  - @doctrine.fittings.each do |fitting|
+    li = link_to fitting.name, fitting
+
+
+h2 Pilots
+table
+  thead
+    tr
+      th Pilot
+      - @doctrine.fitting_names.each do |fitting_name|
+        th = fitting_name
+  tbody
+    - @doctrine.diffs.each do |diff|
+      tr
+        td = diff[:pilot].name
+        - diff[:fittings].each do |fitting|
+          td
+            - if fitting.all? { |k,v| v }
+              | Yes
+            - else
+              = render "refills/modal", label: "No",
+              fitting: fitting,
+              pilot: diff[:pilot]

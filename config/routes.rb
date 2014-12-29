@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   resources :api_keys, only: [:index]
 
   resources :fittings, only: [:index, :show, :new, :create]
+  resources :doctrines, only: [:index, :show, :new, :create, :edit, :update]
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

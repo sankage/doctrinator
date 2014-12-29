@@ -1,32 +1,19 @@
-class FittingDiff
-  attr_reader :fitting, :pilots
-  def initialize(fitting)
-    @fitting = fitting
+class DoctrineDiff
+  attr_reader :doctrine, :pilots, :fittings
+  def initialize(doctrine)
+    @doctrine = doctrine
+    @fittings = doctrine.fittings
     @pilots = Pilot.includes(pilot_skills: :skill).order(:name)
   end
 
-  def requirements
-    fitting.requirements
+  def doctrine_name
+    doctrine.name
   end
 
-  def eft
-    fitting.eft
-  end
-
-  def dna
-    fitting.dna
-  end
-
-  def ship_id
-    dna.split(":").first.to_i
-  end
-
-  def ship_name
-    fitting.ship_name
-  end
-
-  def fitting_name
-    "#{fitting.ship_name}—#{fitting.name}"
+  def fitting_names
+    fittings.map do |fitting|
+      "#{fitting.ship_name}—#{fitting.name}"
+    end
   end
 
   def diffs
@@ -36,14 +23,20 @@ class FittingDiff
       end
       {
         pilot: pilot,
-        fitting: requirements.map { |req|
-          [req.skill_name, check_requirement(req, pilot.pilot_skills)]
-        }.to_h.merge({ id: fitting.id })
+        fittings: fitting_requirements(pilot)
       }
     end
   end
 
   private
+
+  def fitting_requirements(pilot)
+    fittings.map do |fitting|
+      fitting.requirements.map { |req|
+        [req.skill_name, check_requirement(req, pilot.pilot_skills)]
+      }.to_h.merge({ id: fitting.id })
+    end
+  end
 
   def check_requirement(req, pilot_skills)
     pilot_skill = pilot_skills.detect { |ps| ps.skill_id == req.skill_id }
