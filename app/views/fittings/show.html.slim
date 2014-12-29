@@ -3,10 +3,11 @@ h2 Fitting Name: #{@fitting.fitting_name}
 
 section
   div.half
-    h2 EFT
-    == @fitting.eft.gsub("\n", "<br>")
+    img src="https://image.eveonline.com/Render/#{@fitting.ship_id}_512.png"
 
   div.half
+    h2 EFT
+    == @fitting.eft.gsub("\n", "<br>")
     h2 DNA
     = @fitting.dna
 

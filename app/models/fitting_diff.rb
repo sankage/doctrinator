@@ -17,6 +17,10 @@ class FittingDiff
     fitting.dna
   end
 
+  def ship_id
+    dna.split(":").first.to_i
+  end
+
   def ship_name
     fitting.ship_name
   end
