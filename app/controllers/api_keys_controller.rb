@@ -43,6 +43,13 @@ class ApiKeysController < ApplicationController
     redirect_to player_path(@player)
   end
 
+  def destroy
+    api_key = ApiKey.find(params[:id])
+    api_key.destroy
+    flash[:success] = "API Key has been deleted."
+    redirect_to api_keys_path
+  end
+
   private
 
   def api_key_params

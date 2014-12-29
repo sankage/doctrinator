@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :players, only: [:index, :show, :new, :create] do
-    resources :api_keys, only: [:new, :create, :show] do
+    resources :api_keys, only: [:new, :create, :show, :destroy] do
       member do
         post "import"
       end
