@@ -1,6 +1,11 @@
 h1 Players
 
 = link_to "Add new player", new_player_path, class: "button"
-ul.default
+ul
   - @players.each do |player|
-    li = link_to player.name, player
+    li
+      = link_to player.name, player
+      - if player.pilots.size > 0
+        ul.default
+          - player.pilots.sort_by { |p| p.name }.each do |pilot|
+            li = pilot.name

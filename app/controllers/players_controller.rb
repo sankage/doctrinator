@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    @players = Player.includes(:pilots).order(:name)
   end
 
   def show
