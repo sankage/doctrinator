@@ -1,0 +1,19 @@
+h1 API Keys
+
+table.not-fixed
+  thead
+    tr
+      th Player
+      th Key ID
+      th VCode
+  tbody
+    - @players.each do |player|
+      - if player.api_keys.size > 0
+        tr rowspan=player.api_keys.size
+          td = link_to player.name, player
+          td = player.api_keys.first.key_id
+          td = player.api_keys.first.v_code
+        - player.api_keys[1..-1].each do |api_key|
+          tr
+            td = api_key.key_id
+            td = api_key.v_code

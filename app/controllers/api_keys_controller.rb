@@ -1,4 +1,8 @@
 class ApiKeysController < ApplicationController
+  def index
+    @players = Player.includes(:api_keys).order(:name)
+  end
+
   def show
     @player = Player.find(params[:player_id])
     @api_key = ApiKey.find(params[:id])

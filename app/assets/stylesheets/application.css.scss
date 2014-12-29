@@ -67,3 +67,7 @@ div.half {
 .button {
   @extend %button;
 }
+
+table.not-fixed {
+  table-layout: auto;
+}

@@ -2,5 +2,6 @@ header
   ul.horizontal
     - if logged_in?
       li = link_to "Players", players_path
+      li = link_to "API Keys", api_keys_path
       li = link_to "Fittings", fittings_path
       li = link_to "Log out", logout_path, method: :delete

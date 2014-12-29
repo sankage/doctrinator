@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :api_keys, only: [:index]
+
   resources :fittings, only: [:index, :show, :new, :create]
 
   get    'login'   => 'sessions#new'
