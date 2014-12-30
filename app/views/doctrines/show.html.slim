@@ -5,7 +5,7 @@ h1 Doctrines—#{@doctrine.doctrine_name}
 h2 Fittings
 ul.default
   - @doctrine.fittings.each do |fitting|
-    li = link_to fitting.name, fitting
+    li = link_to fitting.full_name, fitting
 
 
 h2 Pilots

@@ -1,4 +1,6 @@
 = simple_form_for @doctrine do |f|
   = f.input :name
-  = f.association :fittings, as: :check_boxes
+  = f.association :fittings, collection: Fitting.order(:ship_name, :name), \
+                                     as: :check_boxes, \
+                           label_method: :full_name
   = f.button :submit

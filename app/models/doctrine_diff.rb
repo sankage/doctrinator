@@ -2,7 +2,7 @@ class DoctrineDiff
   attr_reader :doctrine, :pilots, :fittings
   def initialize(doctrine)
     @doctrine = doctrine
-    @fittings = doctrine.fittings
+    @fittings = doctrine.fittings.sort_by { |fit| fit.full_name }
     @pilots = Pilot.includes(pilot_skills: :skill).order(:name)
   end
 
@@ -11,9 +11,7 @@ class DoctrineDiff
   end
 
   def fitting_names
-    fittings.map do |fitting|
-      "#{fitting.ship_name}—#{fitting.name}"
-    end
+    fittings.map(&:full_name)
   end
 
   def diffs

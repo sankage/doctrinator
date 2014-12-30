@@ -1,6 +1,6 @@
 class FittingsController < ApplicationController
   def index
-    @fittings = Fitting.all
+    @fittings = Fitting.order(:ship_name, :name)
   end
 
   def show

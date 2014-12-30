@@ -17,4 +17,8 @@ class Fitting < ActiveRecord::Base
       requirements = Requirement.create_from_static_array(skills)
     end
   end
+
+  def full_name
+    "#{ship_name}—#{name}"
+  end
 end
