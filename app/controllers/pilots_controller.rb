@@ -10,4 +10,10 @@ class PilotsController < ApplicationController
     SkillImportJob.perform_later(pilot)
     redirect_to player_pilot_path(pilot.player, pilot)
   end
+
+  def mark_prime
+    pilot = Pilot.find(params[:id])
+    pilot.toggle!(:prime)
+    redirect_to player_pilot_path(pilot.player, pilot)
+  end
 end

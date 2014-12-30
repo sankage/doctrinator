@@ -8,4 +8,7 @@ ul
       - if player.pilots.size > 0
         ul.default
           - player.pilots.sort_by { |p| p.name }.each do |pilot|
-            li = pilot.name
+            li
+              - if pilot.prime?
+                span.prime P
+              = pilot.name

@@ -3,7 +3,7 @@ class DoctrineDiff
   def initialize(doctrine)
     @doctrine = doctrine
     @fittings = doctrine.fittings.sort_by { |fit| fit.full_name }
-    @pilots = Pilot.includes(pilot_skills: :skill).order(:name)
+    @pilots = Pilot.includes(pilot_skills: :skill).where(prime: true).order(:name)
   end
 
   def doctrine_name

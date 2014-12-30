@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :pilots, only: [:show] do
       member do
         get "import_skills"
+        get "mark_prime"
       end
     end
   end

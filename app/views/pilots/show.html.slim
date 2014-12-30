@@ -1,9 +1,14 @@
-h1 Pilot—#{@pilot.name}
+h1
+  | Pilot—#{@pilot.name}
+  - if @pilot.prime?
+    span.prime Prime
+= link_to "Toggle Prime", mark_prime_player_pilot_path(@pilot.player, @pilot)
+
+h2 Skills
 
 p Skills last imported #{time_ago_in_words(@pilot.updated_at)} ago
 = link_to "Import player skills", import_skills_player_pilot_path(@pilot.player, @pilot)
 
-h2 Skills
 table
   thead
     tr

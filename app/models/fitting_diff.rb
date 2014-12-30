@@ -2,7 +2,7 @@ class FittingDiff
   attr_reader :fitting, :pilots
   def initialize(fitting)
     @fitting = fitting
-    @pilots = Pilot.includes(pilot_skills: :skill).order(:name)
+    @pilots = Pilot.includes(pilot_skills: :skill).where(prime: true).order(:name)
   end
 
   def requirements

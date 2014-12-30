@@ -79,3 +79,10 @@ table.not-fixed {
 .alert-text {
   color: darken($alert-color, 55);
 }
+
+.prime {
+  @include flash(#FFD700);
+  display: inline;
+  font-size: 0.4em;
+  vertical-align: middle;
+}
