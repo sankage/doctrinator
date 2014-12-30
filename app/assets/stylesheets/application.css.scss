@@ -75,3 +75,7 @@ table.not-fixed {
 .incorrect, .expired {
   color: darken($error-color, 45);
 }
+
+.alert-text {
+  color: darken($alert-color, 55);
+}

@@ -30,16 +30,22 @@ class DoctrineDiff
 
   def fitting_requirements(pilot)
     fittings.map do |fitting|
-      fitting.requirements.map { |req|
-        [req.skill_name, check_requirement(req, pilot.pilot_skills)]
-      }.to_h.merge({ id: fitting.id })
+      {
+        fitting_id: fitting.id,
+        fitting: fitting.requirements.map { |req|
+          check_requirement(req, pilot.pilot_skills)
+        }
+      }
     end
   end
 
   def check_requirement(req, pilot_skills)
     pilot_skill = pilot_skills.detect { |ps| ps.skill_id == req.skill_id }
-    return false unless pilot_skill
-    return false if pilot_skill.level < req.level
-    return true if pilot_skill.level >= req.level
+    {
+      name: req.skill_name,
+      diff: pilot_skill.nil? ? -9 : pilot_skill.level - req.level,
+      pilot_skill_level: pilot_skill.nil? ? 0 : pilot_skill.level,
+      requirement_level: req.level
+    }
   end
 end

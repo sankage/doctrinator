@@ -35,9 +35,10 @@ table
       tr
         td = diff[:pilot].name
         td
-          - if diff[:fitting].all? { |k,v| v }
+          - if diff[:fitting].all? { |skill| skill[:diff] >= 0 }
             | Yes
           - else
             = render "refills/modal", label: "No",
                                     fitting: diff[:fitting],
-                                      pilot: diff[:pilot]
+                                      pilot: diff[:pilot],
+                                 fitting_id: diff[:fitting_id]

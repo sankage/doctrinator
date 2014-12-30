@@ -1,13 +1,16 @@
 div.modal
-  label for="modal-#{pilot.id}-#{fitting[:id]}"
+  label for="modal-#{pilot.id}-#{fitting_id}"
     div class="btn js-btn" = label
-  input.modal-state id="modal-#{pilot.id}-#{fitting[:id]}" type="checkbox"
+  input.modal-state id="modal-#{pilot.id}-#{fitting_id}" type="checkbox"
   div.modal-window
     div.modal-inner
-      label.modal-close for="modal-#{pilot.id}-#{fitting[:id]}"
+      label.modal-close for="modal-#{pilot.id}-#{fitting_id}"
       h1 #{pilot.name}'s Missing Skills
       p.intro
       ul.default
-        - fitting.each do |skill, valid|
-          - unless valid
-            li = skill
+        - fitting.each do |skill|
+          - if skill[:diff] == -9
+            li.incorrect = skill[:name]
+          - if skill[:diff] < 0 && skill[:diff] > -6
+            li.alert-text #{skill[:name]} #{skill[:pilot_skill_level]}
+              | (#{skill[:requirement_level]} is required.)
