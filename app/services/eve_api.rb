@@ -10,11 +10,12 @@ class EveAPI
     result = api_with_scope("account").Characters
     result.characters
   rescue EAAL::Exception.EveAPIException(106)
-    # Must provide userID or keyID parameter for authentication.
     @api_key.incorrect!
     []
+  rescue EAAL::Exception.EveAPIException(221)
+    @api_key.no_access!
+    []
   rescue EAAL::Exception.EveAPIException(222)
-    # Key has expired. Contact key owner for access renewal.
     @api_key.expired!
     []
   end
@@ -23,11 +24,12 @@ class EveAPI
     result = api_with_scope("char").CharacterSheet(characterID: character_id)
     result.skills
   rescue EAAL::Exception.EveAPIException(106)
-    # Must provide userID or keyID parameter for authentication.
     @api_key.incorrect!
     []
+  rescue EAAL::Exception.EveAPIException(221)
+    @api_key.no_access!
+    []
   rescue EAAL::Exception.EveAPIException(222)
-    # Key has expired. Contact key owner for access renewal.
     @api_key.expired!
     []
   end
@@ -38,3 +40,13 @@ class EveAPI
     @apis[scope] ||= EAAL::API.new(@key_id, @v_code, scope)
   end
 end
+
+
+# Error Codes
+#
+# 221: Illegal page request! Please verify the access granted by the key you are
+# using!
+#
+# 106: Must provide userID or keyID parameter for authentication.
+#
+# 222: Key has expired. Contact key owner for access renewal.

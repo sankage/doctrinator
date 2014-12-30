@@ -72,7 +72,7 @@ table.not-fixed {
   table-layout: auto;
 }
 
-.incorrect, .expired {
+.incorrect, .expired, .no_access {
   color: darken($error-color, 45);
 }
 
