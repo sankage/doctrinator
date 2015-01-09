@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :players, only: [:index, :show, :new, :create] do
+  resources :players, only: [:index, :show, :new, :create, :destroy] do
     resources :api_keys, only: [:new, :create, :show, :destroy] do
       member do
         post "import"

@@ -10,3 +10,9 @@ h2 API Keys
 ul.default
   - @player.api_keys.each do |api_key|
     li = link_to api_key.key_id, [@player, api_key]
+
+
+= link_to "Remove Player", player_path(@player), \
+                           class: "error button", \
+                           method: :delete, \
+                           data: { confirm: "Are you sure you wish to delete this api key?" }

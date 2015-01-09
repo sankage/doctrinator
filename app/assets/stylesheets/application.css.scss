@@ -66,6 +66,9 @@ div.half {
 
 .button {
   @extend %button;
+  &.error {
+    @extend %flash-error;
+  }
 }
 
 table.not-fixed {
