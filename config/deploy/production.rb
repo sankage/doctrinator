@@ -10,11 +10,11 @@
 set :stage, :production
 set :branch, 'master'
 
-set :server_name, "opec.eve-pospy.com"
+set :server_name, "doctrinator.eve-pospy.com"
 
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-server 'opec.eve-pospy.com', user: 'deploy', roles: %w{web app db}, primary: true
+server 'doctrinator.eve-pospy.com', user: 'deploy', roles: %w{web app db}, primary: true
 
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 
