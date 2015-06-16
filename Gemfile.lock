@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/3rdpartyeve/eaal.git
-  revision: 21916b693f56e90d6090c9b3d513c4d7e1b48779
-  specs:
-    eaal (0.1.12)
-      faraday (>= 0.8.4)
-      hpricot (>= 0.6)
-      memcache-client (>= 1.7.1)
-
-GIT
   remote: git://github.com/composite-primary-keys/composite_primary_keys.git
   revision: 1aa1a4d50759c5a2b5f28cc0b6b1f86ac9e2269d
   branch: ar_4.2.x
@@ -95,9 +86,13 @@ GEM
     columnize (0.9.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    eaal (0.1.16)
+      faraday (>= 0.8.4)
+      hpricot (>= 0.6)
+      memcache-client (>= 1.7.1)
     erubis (2.7.0)
     execjs (2.2.2)
-    faraday (0.9.0)
+    faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -241,7 +236,7 @@ DEPENDENCIES
   capistrano-rbenv
   coffee-rails (~> 4.1.0)
   composite_primary_keys!
-  eaal!
+  eaal
   jbuilder (~> 2.0)
   jquery-rails
   neat (~> 1.7.0)
