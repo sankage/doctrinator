@@ -4,7 +4,7 @@ module Static
     self.primary_keys = "typeID", "attributeID"
     belongs_to :item, foreign_key: :typeID
     belongs_to :trait, foreign_key: :attributeID
-    include ReadOnlyRecord
+    # include ReadOnlyRecord
 
   end
 end

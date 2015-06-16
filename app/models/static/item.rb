@@ -7,7 +7,7 @@ module Static
     has_many :effects, through: :item_effects
     has_many :item_traits, foreign_key: :typeID
     has_many :traits, through: :item_traits
-    include ReadOnlyRecord
+    # include ReadOnlyRecord
 
     alias_attribute :name, :typeName
 

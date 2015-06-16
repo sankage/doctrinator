@@ -4,6 +4,6 @@ module Static
     self.primary_keys = "typeID", "effectID"
     belongs_to :effect, foreign_key: :effectID
     belongs_to :item, foreign_key: :typeID
-    include ReadOnlyRecord
+    # include ReadOnlyRecord
   end
 end
