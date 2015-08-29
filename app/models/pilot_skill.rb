@@ -7,15 +7,11 @@ class PilotSkill < ActiveRecord::Base
   end
 
   def self.parse_skills(skills: , pilot:)
-    skill_ids = skills.map(&:typeID)
-    skill_data = Static::Skill.includes(:group).find(skill_ids)
     pilot_skills = pilot.pilot_skills
     skills.map do |data|
-      skill = skill_data.detect { |s| s.typeID.to_i == data.typeID.to_i }
-      next unless skill
-      skill_model = pilot_skills.detect { |s| s.skill_id == skill.id }
+      skill_model = pilot_skills.detect { |s| s.skill_id == data.typeID }
       if skill_model.nil?
-        skill_model = new(pilot_id: pilot.id, skill_id: skill.typeID, level: data.level.to_i)
+        skill_model = new(pilot_id: pilot.id, skill_id: data.typeID, level: data.level.to_i)
         next skill_model
       end
 
