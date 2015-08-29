@@ -1,19 +1,24 @@
 class SessionsController < ApplicationController
-  skip_before_action :logged_in_user
-
   def new
+    redirect_to '/auth/evesso'
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      flash[:success] = "Logged in!"
-      redirect_to root_path
+    auth = request.env['omniauth.auth']
+    eveapi  = EAAL::API.new(nil, nil, 'eve')
+    character_info = eveapi.CharacterInfo(characterID: auth[:info].character_id)
+    if character_info.corporation != 'POS Party'
+      flash[:error] = "You are not a member of our corporation."
     else
-      flash.now.alert = "Email or password is invalid."
-      render :new
+      pilot = Pilot.find_by(character_id: auth['uid'].to_s)
+      if pilot.nil?
+        flash[:alert] = "You are not registered."
+      else
+        log_in pilot
+      end
     end
+
+    redirect_to root_path
   end
 
   def destroy

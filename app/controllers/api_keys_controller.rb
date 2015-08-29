@@ -1,4 +1,6 @@
 class ApiKeysController < ApplicationController
+  before_action :logged_in_admin
+
   def index
     @players = Player.includes(:api_keys).order(:name)
   end

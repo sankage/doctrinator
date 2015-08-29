@@ -1,8 +1,11 @@
 header
   ul.horizontal
     - if logged_in?
-      li = link_to "Players", players_path
-      li = link_to "API Keys", api_keys_path
+      - if logged_in_as_admin?
+        li = link_to "Players", players_path
+        li = link_to "API Keys", api_keys_path
       li = link_to "Fittings", fittings_path
       li = link_to "Doctrines", doctrines_path
       li = link_to "Log out", logout_path, method: :delete
+    - else
+      li = link_to "Login", login_path

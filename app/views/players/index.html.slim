@@ -1,14 +1,31 @@
 h1 Players
 
 = link_to "Add new player", new_player_path, class: "button"
-ul
-  - @players.each do |player|
-    li
-      = link_to player.name, player
-      - if player.pilots.size > 0
-        ul.default
-          - player.pilots.sort_by { |p| p.name }.each do |pilot|
-            li
-              - if pilot.prime?
-                span.prime P
-              = pilot.name
+table
+  thead
+    tr
+      th Player
+      th Pilots
+      th Access Level
+  tbody
+    - @players.each do |player|
+      tr
+        td rowspan=player.pilots.size = link_to player.name, player
+        - pilots = player.pilots.sort_by { |p| p.name }
+        - if !pilots.empty?
+          td
+            - if pilots.first.prime?
+              span.prime P
+            = link_to pilots.first.name, player_pilot_path(player, pilots.first)
+          td = pilots.first.access_level.upcase
+
+          - pilots[1..-1].each do |pilot|
+            tr
+              td
+                - if pilot.prime?
+                  span.prime P
+                = link_to pilot.name, player_pilot_path(player, pilot)
+              td = pilot.access_level.upcase
+        - else
+          td
+          td

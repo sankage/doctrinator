@@ -1,6 +1,7 @@
 h1 Doctrines—#{@doctrine.doctrine_name}
 
-= link_to "Edit doctrine", edit_doctrine_path(@doctrine.doctrine), class: "button"
+- if logged_in_as_fc_or_admin?
+  = link_to "Edit doctrine", edit_doctrine_path(@doctrine.doctrine), class: "button"
 
 h2 Fittings
 ul.default
@@ -8,7 +9,7 @@ ul.default
     li = link_to fitting.full_name, fitting
 
 
-h2 Pilots
+h2 Pilot Readiness
 table
   thead
     tr

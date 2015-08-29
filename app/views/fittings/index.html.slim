@@ -1,6 +1,7 @@
 h1 Fittings
 
-= link_to "Add a Fitting", new_fitting_path, class: "button"
+- if logged_in_as_fc_or_admin?
+  = link_to "Add a Fitting", new_fitting_path, class: "button"
 
 ul.default
   - @fittings.each do |fitting|

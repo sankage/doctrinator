@@ -89,3 +89,9 @@ table.not-fixed {
   font-size: 0.4em;
   vertical-align: middle;
 }
+th, td {
+  padding: 1em;
+}
+td[rowspan] {
+  vertical-align: top;
+}

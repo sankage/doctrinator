@@ -2,7 +2,25 @@ h1
   | Pilot—#{@pilot.name}
   - if @pilot.prime?
     span.prime Prime
-= link_to "Toggle Prime", mark_prime_player_pilot_path(@pilot.player, @pilot)
+= link_to "Toggle Prime", mark_prime_player_pilot_path(@pilot.player, @pilot), \
+  method: :patch
+
+dl
+  dt Access Level
+  dd
+    = @pilot.access_level.upcase
+    br
+    - unless @pilot.access_level == 'generic'
+      = link_to "make Generic", make_generic_player_pilot_path(@pilot.player,\
+        @pilot), method: :patch
+      br
+    - unless @pilot.access_level == 'fc'
+      = link_to "make FC", make_fc_player_pilot_path(@pilot.player, @pilot),\
+        method: :patch
+      br
+    - unless @pilot.access_level == 'admin'
+      = link_to "make Admin", make_admin_player_pilot_path(@pilot.player, \
+        @pilot), method: :patch
 
 h2 Skills
 

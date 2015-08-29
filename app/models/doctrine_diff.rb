@@ -1,9 +1,9 @@
 class DoctrineDiff
   attr_reader :doctrine, :pilots, :fittings
-  def initialize(doctrine)
+  def initialize(doctrine, pilots)
     @doctrine = doctrine
     @fittings = doctrine.fittings.sort_by { |fit| fit.full_name }
-    @pilots = Pilot.includes(pilot_skills: :skill).where(prime: true).order(:name)
+    @pilots = pilots
   end
 
   def doctrine_name

@@ -1,10 +1,18 @@
 class DoctrinesController < ApplicationController
+  before_action :logged_in_user
+  before_action :logged_in_fc_or_admin, only: [:new, :create, :edit, :update]
+
   def index
     @doctrines = Doctrine.order(:name)
   end
 
   def show
-    @doctrine = DoctrineDiff.new(Doctrine.includes(:fittings).find(params[:id]))
+    if logged_in_as_fc_or_admin?
+      pilots = Pilot.includes(pilot_skills: :skill).where(prime: true).order(:name)
+    else
+      pilots = [current_user]
+    end
+    @doctrine = DoctrineDiff.new(Doctrine.includes(:fittings).find(params[:id]), pilots)
   end
 
   def new

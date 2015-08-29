@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :logged_in_user
-
   include SessionsHelper
 
   private
@@ -14,6 +12,20 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:alert] = "Please log in."
       redirect_to login_url
+    end
+  end
+
+  def logged_in_admin
+    unless logged_in_as_admin?
+      flash[:alert] = "Access Denied"
+      redirect_to root_path
+    end
+  end
+
+  def logged_in_fc_or_admin
+    unless logged_in_as_fc_or_admin?
+      flash[:alert] = "Access Denied"
+      redirect_to root_path
     end
   end
 end

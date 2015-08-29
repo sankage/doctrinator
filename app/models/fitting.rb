@@ -14,7 +14,7 @@ class Fitting < ActiveRecord::Base
       skills = requirement_dna.split(":").map { |skill_level|
         skill_level.split(";").map(&:to_i)
       }
-      requirements = Requirement.create_from_static_array(skills)
+      Requirement.create_from_static_array(skills)
     end
   end
 

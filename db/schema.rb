@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230155244) do
+ActiveRecord::Schema.define(version: 20150829043006) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "key_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141230155244) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.boolean  "prime",        default: false
+    t.integer  "access_level", default: 0
   end
 
   add_index "pilots", ["api_key_id"], name: "index_pilots_on_api_key_id"

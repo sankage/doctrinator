@@ -1,4 +1,6 @@
 class PlayersController < ApplicationController
+  before_action :logged_in_admin
+
   def index
     @players = Player.includes(:pilots).order(:name)
   end
